@@ -82,7 +82,7 @@ func handleMessage(conn net.Conn) {
 	log.Printf("Connection from %s accepted", conn.RemoteAddr().String())
 	var buffer bytes.Buffer
 
-	temp := make([]byte, 1024)
+	temp := make([]byte, 256)
 	for {
 		n, err := conn.Read(temp)
 
@@ -93,6 +93,7 @@ func handleMessage(conn net.Conn) {
 			log.Fatalf("Error while reading message: %s", err)
 			break
 		}
+
 		if n == 0 {
 			break
 		}
